@@ -3,8 +3,6 @@ WORKDIR /app
 COPY app/package.json app/bun.lockb* ./
 RUN bun install --frozen-lockfile
 COPY app .
-ARG API_URL
-ENV API_URL=$API_URL
 RUN bun run build
 
 FROM nginx:alpine

@@ -1,9 +1,9 @@
-FROM golang:1.24-alpine AS build
+FROM golang:1.26.3-alpine3.23 AS build
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY *.go ./
-RUN CGO_ENABLED=0 GOOS=linux go build -o api .
+RUN go build -o api .
 
 FROM scratch
 COPY --from=build /app/api /api

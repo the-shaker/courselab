@@ -1,4 +1,4 @@
-const BASE = import.meta.env.API_URL ?? '';
+const BASE = 'https://api.nikitos.pro';
 
 const get = (path) => fetch(BASE + path).then(r => r.json());
 
