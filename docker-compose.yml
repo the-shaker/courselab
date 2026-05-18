@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: api
+    restart: unless-stopped
+    expose:
+      - "8080"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+      args:
+        API_URL: ${API_URL}
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - api
