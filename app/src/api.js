@@ -1,4 +1,4 @@
-const BASE = 'https://api.nikitos.pro';
+const BASE = import.meta.env.VITE_API_URL ?? '';
 
 const get = (path) => fetch(BASE + path).then(r => r.json());
 
